@@ -18,4 +18,4 @@ Files to support Rap's MERN presentations
 
 
 ## Node and Express
-
+- The library that allows Node to read from a MongoDB database, [mongodb](https://www.npmjs.com/package/mongodb)
