@@ -1,0 +1,26 @@
+{
+  "name": "node-country-query",
+  "version": "0.0.2",
+  "description": "Scrapes country information and saves it to be read later",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "echo It works! && ls",
+    "devserver": "nodemon server.mjs"
+  },
+  "keywords": [
+    "geography",
+    "countries"
+  ],
+  "author": "Rap",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "google-libphonenumber": "^3.2.13",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
