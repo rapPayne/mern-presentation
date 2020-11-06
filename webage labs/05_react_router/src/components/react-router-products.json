@@ -1,0 +1,9 @@
+{
+  "products": [
+    { "name": "Raincoat", "description": "foul weather outerwear", "image": "/images/raincoat.png" },
+    { "name": "Socks", "description": "for keeping feet warm", "image": "/images/socks.png" },
+    { "name": "Gloves", "description": "to protect hands", "image": "/images/gloves.png" },
+    { "name": "Shoes", "description": "all purpose footwear", "image": "/images/shoes.png" },
+    { "name": "Hat", "description": "headwear", "image": "/images/hat.png" }
+  ]
+}
