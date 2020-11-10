@@ -28,8 +28,8 @@ Answer all the questions as you like.
 `$ npm install nodemon --save-dev`
 2. Create the server script called index.js:
 ```javascript
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 const app = express();
 const port = 3001;
 app.use(bodyParser.json());
@@ -37,18 +37,21 @@ app.listen(port, () => {
   console.log(`API server listening on port ${port}`)
 });
 ```
-3. Add this to the scripts section of package.json:  
+3. Since we're using ES6-style imports, add this to package.json:  
+`"type":"module"`
+
+4. Add this to the scripts section of package.json:  
 `"server": "nodemon ./index.js",`
-4. Run to start the server:  
+5. Run to start the server:  
 `$ npm run server`
-5. Tell it to send *something* back when the user hits `GET /api/people/random`
+6. Tell it to send *something* back when the user hits `GET /api/people/random`
 ```javascript
 app.get("/api/people/random", (req, res) => {
   res.status = 200;
   res.send("Person data here");
 });
 ```
-6. Test by hitting that endpoint with cURL or Postman or even a browser.
+7. Test by hitting that endpoint with cURL or Postman or even a browser.
 
 ## Return a random person from the collection
 Here we'll read a random person from the people collection and return that person.
@@ -56,12 +59,13 @@ Here we'll read a random person from the people collection and return that perso
 `$ npm install mongodb`
 2. *Require* the library
 ```javascript
-const mongoClient = require('mongodb').MongoClient;
+import mongodb from 'mongodb'
 ```
 3. Connect to the DB
 ```javascript
 const mongoUrl = 'mongodb://localhost:27017';
 let db;
+const mongoClient = mongodb.MongoClient;
 mongoClient.connect(mongoUrl, (err, client) => {
   if (err) {
     console.error(`Can't connect to ${mongoUrl}: `, err);
@@ -126,6 +130,7 @@ If your client app is served from port 3000 and requests Ajax data from port 300
 "proxy": "http://localhost:3001",
 ```
 Now we can write our React app to fetch data from it.
+
 2. Add a couple of hooks to RandomPerson:
 ```javascript
 import { useEffect, useState } from 'react';
