@@ -12,28 +12,30 @@ mongodb.MongoClient.connect(url, (err, client) => {
 // let books = [];
 // books[100] = {isbn:100, title:"Jaws", price: 14.95};
 
-//export const findBook = isbn => books[isbn];
-export const findBook = (isbn, callback) => {
+export const findAllBooks = () => {
   const coll = dbpool.collection("books");
-  coll.find({ isbn: isbn }).toArray((err, books) => {
-    if (err) {
-      callback(err);
-    } else {
-      callback(undefined, books[0]);
-    }
-  })
-
+  return coll.find().toArray()
 }
+
+//export const findBook = isbn => books[isbn];
+export const findBook = (isbn) => {
+  const coll = dbpool.collection("books");
+  return coll.find({ isbn: +isbn }).toArray();
+}
+
 // export const updateBook = (isbn,book) => books[isbn] = book;
 export const updateBook = (isbn, book, callback) => {
   const coll = dbpool.collection("books");
-  coll.updateOne({ isbn: isbn }, {$set: {
-    isbn: isbn,
-    title: book.title,
-    price: book.price,
-  }},
+  coll.updateOne({ isbn: isbn }, {
+    $set: {
+      isbn: isbn,
+      title: book.title,
+      price: book.price,
+    }
+  },
     callback);
 }
+
 //export const addBook = (book) => books[book.isbn] = book;
 export const addBook = (book, callback) => {
   const coll = dbpool.collection("books");
@@ -46,6 +48,7 @@ export const addBook = (book, callback) => {
   });
 }
 //export const deleteBook = isbn => books = books.filter(b => b.isbn !== isbn)
-export const deleteBook = (isbn, callback) => {
-  
+export const deleteBook = isbn => {
+  const coll = dbpool.collection("books");
+  return coll.deleteOne({ isbn: isbn });
 }
